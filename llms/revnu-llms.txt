@@ -1,0 +1,104 @@
+# Revnu — Your AI Growth Hire
+
+> Revnu is an AI growth team for startups. Connect your product and agents start finding customers, testing ideas, and learning across channels.
+
+Canonical: https://revnu.com
+
+Revnu is your AI growth hire — the growth team for startups. AI made coding
+easier than ever, which means the product is not the moat anymore —
+distribution is. Revnu does all the boring growth work technical founders know
+they should do but never get round to. You stay in the codebase. Revnu handles
+the rest.
+
+## What Revnu does
+
+- Finds and qualifies leads from real signals
+- Drafts cold outbound, partnership pitches, and reporter intros
+- Writes SEO content in your voice for Google and AI search
+- Runs ad experiments across Meta, LinkedIn, Reddit, TikTok, and other channels
+- Turns product wins into short-form video and social posts
+- Tests pricing, landing-page copy, CTAs, and onboarding flows
+- Sends approvals and weekly recaps through iMessage, Slack, and email
+
+## Main routes
+
+- Features: https://revnu.com/features
+- Pricing: https://revnu.com/pricing
+- Book a demo: https://revnu.com/book
+- FAQ: https://revnu.com/faq
+- About: https://revnu.com/about
+- Manifesto: https://revnu.com/manifesto
+- Blog: https://revnu.com/blog
+- Comparisons: https://revnu.com/comparisons
+- Use cases: https://revnu.com/use-cases
+- Guides: https://revnu.com/guides
+
+## Blog
+
+Playbooks for founders at https://revnu.com/blog (full markdown at https://revnu.com/blog/llms.txt):
+
+- [The Autonomous Business Is Almost Here. Marketing Is the Missing Half.](https://revnu.com/blog/the-autonomous-business): AI can now do the engineering and the support. It still can't do the growth. Why marketing is the bottleneck to the autonomous business, and what closes it.
+- [How to Market a Consumer App (When B2B Playbooks Don't Apply)](https://revnu.com/blog/how-to-market-a-consumer-app): Consumer apps don't have a buyer you can email. Marketing one is a distribution and retention game, not a sales game. Here is what actually works from zero.
+- [How to Get Your First 100 Customers (After the First 10 Get Hard)](https://revnu.com/blog/how-to-get-your-first-100-customers): The first 10 customers come from conversations. The first 100 come from a repeatable engine. Here is how to build one, and which channel to build it on.
+- [Is Revnu Worth It? What You Get, What It Costs, and Why It Works](https://revnu.com/blog/is-revnu-worth-it): Revnu is an AI growth employee that gets you customers across every channel for one flat monthly fee. What it does, what it costs, and why founders pick it.
+- [How to Launch a Product With No Audience (Which Is Now the Default)](https://revnu.com/blog/how-to-launch-a-product-with-no-audience): Launching with no audience is the normal case now, not a failure state. What a launch can and cannot do, and the channels that actually work from zero.
+- [Best Marketing Channels for Startups: Why Yours Can't Be Predicted](https://revnu.com/blog/best-marketing-channels-for-startups): Every list of the best marketing channels for startups is someone else's survivor story. What each channel is good for, and how to find yours by testing.
+- [How to Get Users for Your App: What Actually Works After You Ship](https://revnu.com/blog/how-to-get-users-for-your-app): You built the app; now nobody is using it. How to get users for your app from first principles: where users already are, what to say, and finding your channel.
+- [LinkedIn Outreach That Gets Replies: A Founder's Playbook](https://revnu.com/blog/linkedin-outreach): LinkedIn outreach gets founders replies cold email can't, and gets accounts restricted when rushed. The pacing, the message, and where it fits in growth.
+- [AI SDR Tools: What They Do and Why One Channel Isn't Enough](https://revnu.com/blog/ai-sdr-tools): AI SDR tools automate outbound end to end, but one channel rarely builds pipeline alone. What they do well, where they stall, and what to hire instead.
+- [How AI Agents Actually Run Multi-Channel Growth (Not Just Write Copy)](https://revnu.com/blog/how-ai-agents-run-multi-channel-growth): Most AI marketing tools just write copy. Here is how an AI growth agent actually runs SEO, ads, and outbound as one loop, and why the loop is the whole point.
+- [Full-Stack Growth Automation: How One AI Agent Runs Every Channel](https://revnu.com/blog/full-stack-growth-automation): Full-stack growth automation puts SEO, ads, and outbound under one agent that shares what it learns. Here is why a shared brain beats a stack of point tools.
+- [AI Link Building: How to Earn Backlinks Without a Team](https://revnu.com/blog/ai-link-building): AI link building scales the research and outreach behind backlinks, but the link still has to be earned. Here is what to automate and what to avoid.
+- [The One-Person Growth Stack: Marketing as a Solo Founder](https://revnu.com/blog/one-person-growth-stack): Solo founder marketing fails by spreading thin across ten tools. Here is the one-person growth stack: three channels, what only you can do, and what to give AI.
+- [AI for Paid Ads: A Startup's Guide to Smarter Spend](https://revnu.com/blog/ai-for-paid-ads): AI for paid ads can run the busywork and read tests faster, but it cannot save a bad offer. Here is what to automate, what to keep, and how to start small.
+- [Do You Need a Marketing Agency? An Honest Framework](https://revnu.com/blog/do-you-need-a-marketing-agency): Do you need a marketing agency, a hire, or an AI agent? An honest, stage-by-stage framework for early founders deciding where their growth dollars should go.
+- [Cold Email That Gets Replies: A Founder's Playbook](https://revnu.com/blog/cold-email-that-gets-replies): Cold email that gets replies is about relevance, not volume. Here is the founder's playbook: deliverability, a narrow list, real research, and human follow-up.
+- [AI CRO Tools: How to Lift Conversions Without Guessing](https://revnu.com/blog/ai-cro-tools): AI CRO tools speed up conversion work but cannot fix a traffic problem. Here is what automated CRO with AI actually does, and where it does not help.
+- [SEO for Startups: How to Rank When Nobody Knows You](https://revnu.com/blog/seo-for-startups): SEO for startups is not about more blog posts. Here is the minimum that actually ranks a new domain: intent-matched content, internal links, and patience.
+- [How to Get Your Startup Recommended by ChatGPT and Other AI](https://revnu.com/blog/how-to-get-recommended-by-chatgpt): Buyers now ask ChatGPT, Claude, and Perplexity for tool recommendations. Here is how generative engine optimization works and how to get your product cited.
+- [Marketing for Technical Founders: A Playbook for People Who'd Rather Build](https://revnu.com/blog/marketing-for-technical-founders): A practical marketing playbook for technical founders: the smallest set of growth work that actually moves the needle, and how to run it without becoming a marketer.
+- [AI Growth Agents: What They Do and How They Get You Customers](https://revnu.com/blog/ai-growth-agents): An AI growth agent runs marketing work across channels with one shared learning loop. Here is what it does, how it differs from a chatbot, and where it works.
+- [How to Use AI for Marketing: A Founder's Playbook](https://revnu.com/blog/how-to-use-ai-for-marketing): A founder's playbook on how to use AI for marketing across SEO, ads, outbound, social, and lifecycle, including where AI still needs a human.
+- [How to Get Your First 10 Customers (With No Budget)](https://revnu.com/blog/how-to-get-your-first-customers): A no-budget playbook on how to get your first customers: manual outreach, narrow ICP, founder-led sales, and the unscalable moves that actually work.
+
+## Comparisons
+
+Honest growth comparisons for founders at https://revnu.com/comparisons (full markdown at https://revnu.com/comparisons/llms.txt):
+
+- [Apollo vs Revnu: A Sales Platform Priced per Seat, or a Growth Employee](https://revnu.com/comparisons/revnu-vs-apollo): Apollo bundles a 210M-contact database, sequencer, and dialer per seat. Revnu is the operator that sits in the seat. An honest comparison of two species.
+- [Jasper vs Revnu: A Content Platform or a Growth Employee?](https://revnu.com/comparisons/revnu-vs-jasper): Jasper produces on-brand marketing content at enterprise scale. Revnu produces growth: content, distribution, and the loop. An honest comparison of the two.
+- [Instantly vs Revnu: Sending Infrastructure or a Growth Employee?](https://revnu.com/comparisons/revnu-vs-instantly): Instantly is the cheapest way to send cold email at volume, in the exact channel Google is squeezing. Revnu runs every channel. The honest comparison.
+- [Clay vs Revnu: A GTM Workbench or a Growth Employee?](https://revnu.com/comparisons/revnu-vs-clay): Clay is the best data workbench in go-to-market, and someone still has to operate it. Revnu is the operator. An honest comparison of two different species.
+- [11x vs Revnu: What a $50K AI SDR Contract Actually Buys](https://revnu.com/comparisons/revnu-vs-11x): 11x sells enterprise AI SDRs on annual contracts. Revnu is an AI growth employee that runs every channel. An honest look at what each buys you, and for whom.
+- [Artisan vs Revnu: An AI SDR or an AI Growth Employee?](https://revnu.com/comparisons/revnu-vs-artisan): Artisan's Ava is an AI SDR that runs cold outbound. Revnu is an AI growth employee that runs every channel. An honest comparison of what each actually does.
+- [One AI Growth Agent vs. a Stack of Point Tools](https://revnu.com/comparisons/ai-growth-agent-vs-point-tools): AI growth agent vs a stack of point tools: the real cost of running SEO, ads, and outbound in five apps that never talk, and when one agent beats the stack.
+- [AI Growth Agent vs. a Marketing Agency: Which to Pick](https://revnu.com/comparisons/ai-growth-agent-vs-marketing-agency): AI growth agent vs marketing agency: which to pick for a startup. Cost, ramp, channel breadth, and who owns strategy, with an honest verdict for founders.
+- [AI Growth Agent vs. Hiring a Growth Marketer in 2026](https://revnu.com/comparisons/ai-growth-agent-vs-growth-hire): AI growth agent vs hiring a growth marketer: a cost, ramp, and channel-breadth breakdown to help a founder pick the right one for their stage in 2026.
+- [AI SEO vs. an SEO Agency: What Startups Should Choose](https://revnu.com/comparisons/ai-seo-vs-seo-agency): AI SEO vs SEO agency for a startup: where each wins on cost, content cadence, technical audits, and links, plus an honest verdict on which to pick.
+
+## Use cases
+
+Founder growth use cases at https://revnu.com/use-cases (full markdown at https://revnu.com/use-cases/llms.txt):
+
+- [How a Dev-Tool Startup Gets Its First 100 Signups Without a Marketing Team](https://revnu.com/use-cases/dev-tool-startup-first-signups): How a dev-tool startup gets its first 100 signups without a marketing team: an AI growth agent drafts the docs-led SEO, the developer outreach, and the ad test.
+- [How a Technical Founder Runs Growth With an AI Agent](https://revnu.com/use-cases/technical-founder-ai-growth-agent): How a technical founder runs growth with an AI agent: the agent drafts the SEO post, the outbound, and the ad test, and he approves each one in a tap.
+- [How a Solo Founder Runs SEO, Ads, and Outreach at Once](https://revnu.com/use-cases/solo-founder-seo-ads-outreach): A solo founder cannot run SEO, ads, and outreach by hand. Here is how one agent drafts all three across channels while the founder approves and keeps building.
+- [How a Pre-Revenue Startup Gets Its First 1,000 Visitors](https://revnu.com/use-cases/pre-revenue-startup-first-traffic): How a pre-revenue startup earns its first traffic: research the few queries you can win, ship a content cluster, and run a small outreach motion for visitors.
+
+## Guides
+
+Step-by-step growth guides at https://revnu.com/guides (full markdown at https://revnu.com/guides/llms.txt):
+
+- [How to Automate Keyword Research With AI (Step by Step)](https://revnu.com/guides/automate-keyword-research-with-ai): Learn how to automate keyword research with AI: expand seed topics, pull real demand, cluster by intent, and pick winnable queries a human still approves.
+- [How to Get Your First Backlinks: A Startup's Guide](https://revnu.com/guides/get-your-first-backlinks): How to get your first backlinks as a startup: build one citable asset, find relevant targets, and pitch them like a person. A concrete, step-by-step guide.
+
+## Machine-readable resources
+
+- LLM index: https://revnu.com/llms.txt
+- Full LLM context: https://revnu.com/llms-full.txt
+- Blog index: https://revnu.com/blog/llms.txt
+- Comparisons index: https://revnu.com/comparisons/llms.txt
+- Use cases index: https://revnu.com/use-cases/llms.txt
+- Guides index: https://revnu.com/guides/llms.txt
+- Sitemap: https://revnu.com/sitemap.xml
+- Robots: https://revnu.com/robots.txt

@@ -1,7 +1,28 @@
 aid: revnu
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/revnu.png
 name: Revnu
-description: Revnu is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Revnu is an AI-powered growth-automation platform for early-stage and technical
+  founders, positioning itself as an "AI growth hire" that runs marketing work across
+  channels so builders can stay in the codebase. The platform finds and qualifies leads
+  from real signals, drafts cold outbound and partnership pitches, writes SEO content,
+  runs paid ad experiments across Meta, LinkedIn, Reddit, and TikTok, turns product
+  wins into short-form video and social posts, and tests pricing and landing-page copy,
+  sending approvals and weekly recaps through iMessage, Slack, and email. Founded in
+  2026 out of the Y Combinator Spring 2026 batch and based in San Francisco, Revnu is
+  a SaaS product with a dashboard/agent interface rather than an API-first platform;
+  it currently publishes no public developer API, but does expose machine-readable
+  llms.txt context files for AI agents.
 url: https://raw.githubusercontent.com/api-evangelist/revnu/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +32,48 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Growth Automation
+- Marketing
+- Artificial Intelligence
+- SaaS
+- Startups
+- Lead Generation
+- SEO
+common:
+- name: Website
+  url: https://revnu.com
+  type: Website
+- name: Pricing
+  url: https://revnu.com/pricing
+  type: Pricing
+- name: Blog
+  url: https://revnu.com/blog
+  type: Blog
+- name: About
+  url: https://revnu.com/about
+  type: About
+- name: FAQ
+  url: https://revnu.com/faq
+  type: Support
+- name: Book a Demo
+  url: https://revnu.com/book
+  type: SignUp
+- name: LLMs.txt
+  url: llms/revnu-llms.txt
+  type: LLMsTxt
+  x-method: searched
+  x-source: https://revnu.com/llms.txt
 apis: []
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 1
+  pass: local-v1

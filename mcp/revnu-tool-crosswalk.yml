@@ -1,0 +1,326 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/revnu-mcp.yml + cli/revnu-cli.yml
+sources:
+- https://auth.revnu.app/docs/mcp
+- https://auth.revnu.app/docs/cli
+- 'npm @revnu/cli 0.1.0 (dist/index.js: the REST paths the first-party CLI calls)'
+note: >-
+  Revnu publishes no OpenAPI, so the REST side of this crosswalk is bound to
+  HTTP method + path taken verbatim from the first-party @revnu/cli package,
+  not to operationIds. Both surfaces are live and auth-gated on
+  https://auth.revnu.app, so neither tool inputSchemas nor request bodies could
+  be introspected anonymously; every row is mapped by name and by the CLI's own
+  command-to-path wiring.
+surfaces:
+  openapi: null
+  graphql: null
+  rest:
+    base: https://auth.revnu.app
+    prefix: /api/agent
+    gated: true
+    evidence: GET /api/agent/context returns 401 {"error":"Unauthorized"} without a
+      key
+    published_base: https://revnu.app
+    published_base_reachable: false
+  mcp:
+    endpoint: https://auth.revnu.app/api/mcp
+    transport: streamable-http
+    gated: true
+    evidence: POST tools/list returns 401 -32001 Unauthorized
+crosswalk:
+- tool: get_context
+  category: store
+  rest:
+  - GET /api/agent/context
+  binding: rest
+  confidence: high
+  note: '`revnu store get` calls this exact path'
+- tool: update_store
+  category: store
+  rest:
+  - PATCH /api/agent/store
+  binding: rest
+  confidence: high
+- tool: list_products
+  category: products
+  rest:
+  - GET /api/agent/products
+  binding: rest
+  confidence: high
+- tool: create_product
+  category: products
+  rest:
+  - POST /api/agent/products
+  binding: rest
+  confidence: high
+- tool: get_product
+  category: products
+  rest:
+  - GET /api/agent/products/{productId}
+  binding: rest
+  confidence: high
+- tool: update_product
+  category: products
+  rest:
+  - PATCH /api/agent/products/{productId}
+  binding: rest
+  confidence: high
+- tool: delete_product
+  category: products
+  rest:
+  - DELETE /api/agent/products/{productId}
+  binding: rest
+  confidence: high
+- tool: list_coupons
+  category: coupons
+  rest:
+  - GET /api/agent/coupons
+  binding: rest
+  confidence: high
+- tool: create_coupon
+  category: coupons
+  rest:
+  - POST /api/agent/coupons
+  binding: rest
+  confidence: high
+- tool: update_coupon
+  category: coupons
+  rest:
+  - PATCH /api/agent/coupons/{couponId}
+  binding: rest
+  confidence: high
+- tool: delete_coupon
+  category: coupons
+  rest:
+  - DELETE /api/agent/coupons/{couponId}
+  binding: rest
+  confidence: high
+- tool: activate_coupon
+  category: coupons
+  rest:
+  - POST /api/agent/coupons/{couponId}/activate
+  binding: rest
+  confidence: high
+- tool: pause_coupon
+  category: coupons
+  rest:
+  - POST /api/agent/coupons/{couponId}/pause
+  binding: rest
+  confidence: high
+- tool: get_kpis
+  category: analytics
+  rest:
+  - GET /api/agent/analytics/kpis
+  binding: rest
+  confidence: high
+- tool: get_revenue
+  category: analytics
+  rest:
+  - GET /api/agent/analytics/revenue
+  binding: rest
+  confidence: high
+- tool: get_recent_purchases
+  category: analytics
+  rest:
+  - GET /api/agent/analytics/purchases
+  binding: rest
+  confidence: high
+- tool: list_purchases
+  category: purchases
+  rest:
+  - GET /api/agent/purchases
+  binding: rest
+  confidence: high
+- tool: get_purchase
+  category: purchases
+  rest:
+  - GET /api/agent/purchases/{purchaseId}
+  binding: rest
+  confidence: high
+- tool: list_affiliates
+  category: affiliates
+  rest:
+  - GET /api/agent/affiliates
+  binding: rest
+  confidence: high
+- tool: create_affiliate
+  category: affiliates
+  rest:
+  - POST /api/agent/affiliates
+  binding: rest
+  confidence: high
+- tool: update_affiliate
+  category: affiliates
+  rest:
+  - PATCH /api/agent/affiliates/{affiliateId}
+  binding: rest
+  confidence: high
+- tool: delete_affiliate
+  category: affiliates
+  rest:
+  - DELETE /api/agent/affiliates/{affiliateId}
+  binding: rest
+  confidence: high
+- tool: get_affiliate_settings
+  category: affiliates
+  rest:
+  - GET /api/agent/affiliates/settings
+  binding: rest
+  confidence: high
+- tool: update_affiliate_settings
+  category: affiliates
+  rest:
+  - PATCH /api/agent/affiliates/settings
+  binding: rest
+  confidence: high
+- tool: list_abtests
+  category: abtests
+  rest:
+  - GET /api/agent/abtests
+  binding: rest
+  confidence: high
+- tool: create_abtest
+  category: abtests
+  rest:
+  - POST /api/agent/abtests
+  binding: rest
+  confidence: high
+- tool: delete_abtest
+  category: abtests
+  rest:
+  - DELETE /api/agent/abtests/{abTestId}
+  binding: rest
+  confidence: high
+- tool: start_abtest
+  category: abtests
+  rest:
+  - POST /api/agent/abtests/{abTestId}/start
+  binding: rest
+  confidence: high
+- tool: pause_abtest
+  category: abtests
+  rest:
+  - POST /api/agent/abtests/{abTestId}/pause
+  binding: rest
+  confidence: high
+- tool: stop_abtest
+  category: abtests
+  rest:
+  - POST /api/agent/abtests/{abTestId}/stop
+  binding: rest
+  confidence: high
+- tool: get_abtest_results
+  category: abtests
+  rest:
+  - GET /api/agent/abtests/{abTestId}/results
+  binding: rest
+  confidence: high
+- tool: publish_store
+  category: publishing
+  rest:
+  - POST /api/agent/publish
+  binding: rest
+  confidence: medium
+  note: path seen in the @revnu/setup onboarding script, not in @revnu/cli
+- tool: setup_hosting
+  category: publishing
+  rest:
+  - POST /api/cli/hosting
+  binding: rest
+  confidence: low
+  note: only the status poll GET /api/cli/hosting/status?jobId= is visible in the package
+- tool: get_hosting_status
+  category: publishing
+  rest:
+  - GET /api/cli/hosting/status
+  binding: rest
+  confidence: high
+- tool: get_stripe_connect_url
+  category: stripe
+  rest:
+  - GET /api/agent/stripe/connect-url
+  binding: rest
+  confidence: high
+- tool: generate_landing_page
+  category: assets
+  rest:
+  - POST /api/agent/generate-landing-page
+  binding: rest
+  confidence: high
+- tool: get_landing_page_status
+  category: assets
+  rest:
+  - GET /api/agent/generate-landing-page/status
+  binding: rest
+  confidence: high
+- tool: create_store
+  category: store
+  rest:
+  - POST /api/agent/store
+  binding: rest
+  confidence: medium
+  note: the CLI only exposes store get/update; create is documented for MCP
+mcp_only:
+- tool: switch_store
+  reason: no matching REST path in the first-party CLI
+- tool: get_public_key
+  reason: no matching REST path in the first-party CLI; the Auth SDK public key is
+    issued from the dashboard
+- tool: set_product_types
+  reason: folded into PATCH /api/agent/store in the CLI, no dedicated path
+- tool: set_app_url
+  reason: connect-mode setting with no CLI equivalent
+- tool: get_stripe_status
+  reason: polled by the setup CLI internally, no stable published path observed
+- tool: get_discord_auth_url
+  reason: no REST path observed in the published packages
+- tool: get_discord_status
+  reason: no REST path observed in the published packages
+- tool: upload_logo
+  reason: no REST path observed in the published packages
+- tool: analyze_website
+  reason: no REST path observed in the published packages
+- tool: trigger_optimization_cycle
+  reason: exposed via `revnu abtests optimize` in the docs; no path observed in the
+    shipped CLI bundle
+- tool: get_optimization_status
+  reason: exposed via `revnu abtests optimize-status` in the docs; no path observed
+    in the shipped CLI bundle
+rest_only:
+- capability: cli-device-authorization
+  paths:
+  - POST /api/cli/device/code
+  - POST /api/cli/device/poll
+  note: anonymous CLI login bootstrap; POST /api/cli/device/code returns 200 with a
+    live device code. No MCP tool equivalent (MCP uses a dashboard-issued bearer key).
+- capability: licenses
+  paths:
+  - GET /api/agent/licenses
+  - GET /api/agent/licenses/{licenseKeyId}
+  - POST /api/agent/licenses/{licenseKeyId}/revoke
+  - POST /api/agent/licenses/{licenseKeyId}/reactivate
+  note: the license-key surface is in the CLI and the CLI docs but has no MCP tool
+- capability: github-connection
+  paths:
+  - GET /api/cli/github/status
+  note: no MCP tool equivalent
+- capability: end-user authentication
+  paths:
+  - POST /api/auth/revnu/sign-in
+  - POST /api/auth/revnu/sign-out
+  - POST /api/auth/revnu/refresh
+  - GET /api/auth/revnu/store-info
+  - POST /api/auth/revnu/forgot-password
+  - POST /api/auth/revnu/reset-password
+  - POST /api/auth/revnu/setup-password
+  - POST /api/auth/revnu/request-setup-link
+  note: the Auth SDK surface serves a store's buyers, not the store operator; deliberately
+    out of scope for MCP
+coverage:
+  tools_named: 49
+  tools_bound: 38
+  mcp_only: 11
+  rest_paths_mapped_to_a_tool: 38
+  rest_only_paths: 15
+  openapi_operations: 0

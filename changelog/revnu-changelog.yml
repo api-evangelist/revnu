@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/changelog
+sources:
+- https://auth.revnu.app/changelog
+- https://auth.revnu.app/changelog/llms.txt
+scheme: dated-weekly
+versioned_releases: false
+current_version: null
+note: >-
+  Revnu ships a dated weekly product changelog rather than versioned API
+  releases; entries are product-level, not API-level, and none of them carries a
+  breaking-change notice. The most recent entry is 2026-03-31, four and a half
+  months before this pass, even though the marketing site and llms.txt were
+  regenerated 2026-08-13 — so the changelog is stale relative to the product.
+  Full posts live on https://blog.revnu.app.
+latest_entry_date: '2026-03-31'
+entry_count_published: 11
+entries:
+- title: 'Week of March 28: Connect Mode Only'
+  date: '2026-03-31'
+  breaking: true
+  highlights:
+  - Revnu is now connect-only — bring an existing app, merge one PR, agents work on
+    your site 24/7
+  note: recorded as breaking because it retires the previous store-hosting mode the
+    CLI and MCP tool surface are built around
+  url: https://blog.revnu.app/blog/week-of-march-28-2026
+- title: 'Week of March 24: Command K and Connect Mode Polish'
+  date: '2026-03-28'
+  breaking: false
+  highlights:
+  - Command palette across 40+ pages
+  - A/B testing available in connect mode
+  url: https://blog.revnu.app/blog/week-of-march-24-2026
+- title: 'Week of March 17: Connect Mode, Agentic A/B Testing, and Baggins'
+  date: '2026-03-21'
+  breaking: false
+  highlights:
+  - Connect mode for existing SaaS products
+  - AI auto-optimization of landing pages
+  - Built-in AI assistant with 16 tools
+  url: https://blog.revnu.app/blog/week-of-march-17-2026
+- title: 'Week of March 10: MCP Server and Free Trials'
+  date: '2026-03-14'
+  breaking: false
+  additions:
+  - MCP server — manage a Revnu store from Claude Code, Cursor or any AI coding tool
+  - 14-day free trial, no credit card
+  url: https://blog.revnu.app/blog/week-of-march-10-2026
+- title: 'Week of March 3: AI-Powered Store Management'
+  date: '2026-03-07'
+  breaking: false
+  additions:
+  - Edit landing pages, manage products and configure a store through AI agents in
+    a coding tool
+  url: https://blog.revnu.app/blog/week-of-march-3-2026
+- title: 'Week of February 17: Custom Checkout and Plan Upgrades'
+  date: '2026-02-21'
+  breaking: false
+  additions:
+  - Checkout branding, colors and layout
+  - Plan upgrade/downgrade with Stripe proration
+  url: https://blog.revnu.app/blog/week-of-feb-17-2026
+- title: 'Week of February 10: Free Tools, Comparisons, and Guides'
+  date: '2026-02-14'
+  breaking: false
+  additions:
+  - 25+ new pages — calculators, comparisons, selling guides
+  url: https://blog.revnu.app/blog/week-of-feb-10-2026
+- title: 'Jan 20: Analytics, Session Replays, and Billing'
+  date: '2026-01-24'
+  breaking: false
+  additions:
+  - Analytics dashboard with traffic and funnel tracking
+  - Session replay integration
+  - Revnu billing system
+  url: https://blog.revnu.app/blog/week-of-jan-20-2026
+- title: 'Jan 6: Web App Access, Legal Docs, and Design'
+  date: '2026-01-10'
+  breaking: false
+  additions:
+  - web_app product type with the RevnuAuth SDK
+  - AI-generated legal documents
+  - Reference-URL inspiration for landing pages, asset management
+  url: https://blog.revnu.app/blog/week-of-jan-6-2026
+- title: 'Week of December 23: Branding, Custom Email, and License Keys'
+  date: '2025-12-27'
+  breaking: false
+  additions:
+  - Unified branding settings
+  - Custom-domain email delivery
+  - License key system
+  - Buyer email verification
+  url: https://blog.revnu.app/blog/week-of-dec-23-2025
+- title: 'Week of December 8: AI Landing Pages, Storefronts, and Discord'
+  date: '2025-12-12'
+  breaking: false
+  additions:
+  - AI landing page generation
+  - Subdomain storefronts
+  - Discord role automation
+  url: https://blog.revnu.app/blog/week-of-dec-8-2025
+x-evidence:
+- url: https://auth.revnu.app/changelog
+  status: 200
+- url: https://auth.revnu.app/changelog/llms.txt
+  status: 200

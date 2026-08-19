@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "0.1",
+  "serverInfo": {
+    "name": "revnu",
+    "version": "1.0.0",
+    "description": "Manage a Revnu store, products, A/B tests, SEO content, ads, coupons, affiliates, and analytics via MCP. 50+ tools across 12 modules.",
+    "url": "https://revnu.app"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://revnu.app/api/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "authentication": {
+    "type": "bearer",
+    "description": "Bearer API key issued from the creator dashboard (Dashboard → CLI). Prefix: rev_cli_ or rev_.",
+    "tokenIssuer": "https://revnu.app/dashboard/cli"
+  },
+  "documentation": "https://revnu.app/docs/mcp"
+}

@@ -1,0 +1,227 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://auth.revnu.app/docs/mcp
+sources:
+- https://auth.revnu.app/docs/mcp
+- https://auth.revnu.app/docs/mcp/llms.txt
+- https://auth.revnu.app/.well-known/mcp/server-card.json
+- https://auth.revnu.app/.well-known/api-catalog
+deployment:
+  mode: remote
+  endpoint: https://auth.revnu.app/api/mcp
+  published_endpoint: https://revnu.app/api/mcp
+  auth: api-key
+  verified: probed
+  note: >-
+    The endpoint Revnu publishes in its own docs, its MCP server card and its
+    RFC 9727 api-catalog is https://revnu.app/api/mcp. That host 308-redirects
+    every path to https://revnu.com, which returns a 404 HTML shell, so every
+    copy-paste config in the docs (Cursor, Claude Code, Claude Desktop, Codex)
+    fails as published. The server that actually answers MCP JSON-RPC is
+    https://auth.revnu.app/api/mcp — an anonymous POST of tools/list there
+    returns HTTP 401 {"code":-32001,"message":"Unauthorized: Missing or invalid
+    Bearer token"}, i.e. a live, auth-gated MCP server.
+server:
+  name: revnu
+  version: 1.0.0
+  transport: streamable-http
+  url: https://auth.revnu.app/api/mcp
+  server_card: revnu-mcp-server-card.json
+  description: Manage a Revnu store, products, A/B tests, SEO content, ads, coupons,
+    affiliates, and analytics via MCP.
+  capabilities:
+    tools:
+      listChanged: false
+authentication:
+  type: bearer
+  header: Authorization
+  scheme: Bearer
+  key_prefixes:
+  - rev_cli_
+  - rev_
+  issuer: Revnu dashboard, Dashboard -> CLI -> "API Keys & MCP"
+  token_issuer_url: https://revnu.app/dashboard/cli
+  note: tools/list is auth-gated, so tool inputSchemas could not be introspected;
+    the tools below are the provider's own published tool reference (names and
+    descriptions only).
+tool_count_claimed:
+  server_card: 50+ tools across 12 modules
+  docs_markdown: 50 tools across 12 modules
+  docs_html: 43 tools across 11 modules
+  note: the provider's own three surfaces disagree on the count; 49 distinct tool
+    names are actually enumerated in the docs tables captured below
+tools:
+- name: get_context
+  module: store
+  description: Get full onboarding context including store, products, connections,
+    and next steps
+- name: create_store
+  module: store
+  description: Create a new store with name, subdomain, and optional settings
+- name: update_store
+  module: store
+  description: Update store name, description, currency, or product types
+- name: switch_store
+  module: store
+  description: Switch to a different store in your account
+- name: set_product_types
+  module: store
+  description: Set available product types (discord, web_app)
+- name: get_public_key
+  module: store
+  description: Get your store's public API key for Auth SDK integration
+- name: list_products
+  module: products
+  description: List all products, optionally filtered by status
+- name: create_product
+  module: products
+  description: Create a product with name, price, billing interval, and features
+- name: get_product
+  module: products
+  description: Get a single product by ID
+- name: update_product
+  module: products
+  description: Update product name, description, price, or settings
+- name: delete_product
+  module: products
+  description: Delete a product
+- name: list_coupons
+  module: coupons
+  description: List coupons, optionally filtered by status
+- name: create_coupon
+  module: coupons
+  description: Create a coupon with code, discount type, duration, and scope
+- name: update_coupon
+  module: coupons
+  description: Update coupon redemption limits, expiry, or scope
+- name: delete_coupon
+  module: coupons
+  description: Delete a coupon
+- name: activate_coupon
+  module: coupons
+  description: Activate a paused coupon
+- name: pause_coupon
+  module: coupons
+  description: Pause an active coupon
+- name: get_kpis
+  module: analytics
+  description: Get key performance indicators (revenue, customers, MRR, churn)
+- name: get_recent_purchases
+  module: analytics
+  description: Get recent purchases with optional limit
+- name: get_revenue
+  module: analytics
+  description: Get revenue timeseries data with optional date range
+- name: list_purchases
+  module: purchases
+  description: List purchases with optional status, date range, and limit filters
+- name: get_purchase
+  module: purchases
+  description: Get details of a specific purchase
+- name: list_affiliates
+  module: affiliates
+  description: List affiliates, optionally filtered by status
+- name: create_affiliate
+  module: affiliates
+  description: Invite a new affiliate by email and name
+- name: update_affiliate
+  module: affiliates
+  description: Update an affiliate's name or email
+- name: delete_affiliate
+  module: affiliates
+  description: Remove an affiliate
+- name: get_affiliate_settings
+  module: affiliates
+  description: Get affiliate program settings
+- name: update_affiliate_settings
+  module: affiliates
+  description: Update commission rates, cookie expiry, payout minimums
+- name: list_abtests
+  module: abtests
+  description: List all A/B tests
+- name: create_abtest
+  module: abtests
+  description: Create a test with variants, weights, duration, and goal
+- name: delete_abtest
+  module: abtests
+  description: Delete a test
+- name: start_abtest
+  module: abtests
+  description: Start a draft test
+- name: pause_abtest
+  module: abtests
+  description: Pause a running test
+- name: stop_abtest
+  module: abtests
+  description: Stop a test and determine winner
+- name: get_abtest_results
+  module: abtests
+  description: Get test results with conversion data
+- name: publish_store
+  module: publishing
+  description: Publish store and mark onboarding complete
+- name: set_app_url
+  module: publishing
+  description: Set the URL of your existing hosted app (connect mode)
+- name: setup_hosting
+  module: publishing
+  description: Trigger subdomain provisioning for your store
+- name: get_hosting_status
+  module: publishing
+  description: Poll hosting/deployment status
+- name: get_stripe_connect_url
+  module: stripe
+  description: Get Stripe Connect onboarding URL
+- name: get_stripe_status
+  module: stripe
+  description: Poll Stripe connection status
+- name: get_discord_auth_url
+  module: discord
+  description: Get Discord OAuth URLs for account and bot setup
+- name: get_discord_status
+  module: discord
+  description: Poll Discord connection status
+- name: upload_logo
+  module: assets
+  description: Upload a logo or banner from a URL
+- name: analyze_website
+  module: assets
+  description: Analyze a website's design language for landing page inspiration
+- name: generate_landing_page
+  module: assets
+  description: Start AI landing page generation with a vibe description
+- name: get_landing_page_status
+  module: assets
+  description: Poll landing page generation progress
+- name: trigger_optimization_cycle
+  module: optimization
+  description: Trigger an AI optimization cycle that analyzes your landing page, creates
+    a variant, and starts an A/B test
+- name: get_optimization_status
+  module: optimization
+  description: Get current optimization status, recent history, and settings
+clients_documented:
+- cursor
+- claude-code
+- claude-desktop
+- codex
+x-evidence:
+- url: https://auth.revnu.app/api/mcp
+  method: POST tools/list (anonymous)
+  status: 401
+  body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Unauthorized: Missing or
+    invalid Bearer token"},"id":null}'
+- url: https://auth.revnu.app/api/mcp
+  method: GET
+  status: 405
+  body: SSE not supported in stateless mode
+- url: https://revnu.app/api/mcp
+  method: POST
+  status: 308
+  note: Location https://revnu.com/api/mcp
+- url: https://revnu.com/api/mcp
+  method: POST
+  status: 404
+- url: https://auth.revnu.app/.well-known/mcp/server-card.json
+  status: 200

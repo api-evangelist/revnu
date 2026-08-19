@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: generated
+source: https://auth.revnu.app/docs/mcp
+note: >-
+  Revnu has no OpenAPI, so these skills are grounded in the provider's own
+  published MCP tool names and CLI commands (mcp/revnu-mcp.yml,
+  cli/revnu-cli.yml) rather than in operationIds. Every tool named in a skill
+  appears verbatim in Revnu's published tool reference; nothing is invented.
+skills:
+- file: revnu-connect-and-inspect-store.md
+  name: Connect to Revnu and inspect a store
+  api: mcp/revnu-mcp.yml
+  operations:
+  - get_context
+  - list_products
+  - get_kpis
+  - get_stripe_status
+- file: revnu-launch-a-product.md
+  name: Launch a product on a Revnu store
+  api: mcp/revnu-mcp.yml
+  operations:
+  - get_context
+  - get_stripe_connect_url
+  - get_stripe_status
+  - create_product
+  - get_product
+  - list_products
+  - publish_store
+  - get_public_key
+- file: revnu-run-an-ab-test.md
+  name: Run and read an A/B test on a Revnu landing page
+  api: mcp/revnu-mcp.yml
+  operations:
+  - list_abtests
+  - create_abtest
+  - start_abtest
+  - get_abtest_results
+  - pause_abtest
+  - stop_abtest
+  - generate_landing_page
+  - get_landing_page_status
+  - trigger_optimization_cycle
+  - get_optimization_status
+provider_published_skill:
+  method: searched
+  found: registry-entry-only
+  name: revnu
+  registry: https://skills.sh/revnu-app/revnu-skill
+  install: npx skills add revnu-app/revnu-skill
+  documented_at: https://auth.revnu.app/docs/cli
+  source_repository: https://github.com/revnu-app/revnu-skill
+  source_status: 404
+  installs_reported: 4
+  note: >-
+    Revnu's CLI docs tell operators to install a first-party agent skill from
+    skills.sh. The registry page resolves (HTTP 200, 1 skill, 4 installs) but the
+    backing GitHub repository returns 404, so the skill content could not be
+    saved verbatim. Recorded as a published-but-unfetchable provider skill; the
+    three skills above are ours and are marked generated.
+  x-evidence:
+  - url: https://skills.sh/revnu-app/revnu-skill
+    status: 200
+  - url: https://github.com/revnu-app/revnu-skill
+    status: 404
+  - url: https://raw.githubusercontent.com/revnu-app/revnu-skill/refs/heads/main/SKILL.md
+    status: 404

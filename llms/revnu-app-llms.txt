@@ -1,0 +1,57 @@
+# revnu
+
+> Revnu is a growth platform for startups. You built a good product — now you need to sell it. Connect your GitHub repo, merge one PR, and autonomous AI agents handle SEO, A/B testing, ads, outreach, competitor intelligence, and conversion optimization 24/7.
+
+Last updated: 2026-08-13
+
+You build the app, Revnu grows the business. Connect your GitHub repo and Stripe account, merge one PR, and autonomous agents work on your site around the clock — running A/B tests, publishing SEO content, managing ad campaigns across Meta, LinkedIn, and Reddit, monitoring competitors, and optimizing conversions. Revnu is the "everything but the app itself" layer so founders can stay focused on shipping.
+
+## Full Documentation
+
+For AI coding assistants requiring complete context:
+- [Complete Documentation](https://revnu.app/llms-full.txt): All platform documentation in one file
+
+## Docs
+
+- [Getting Started](https://revnu.app/docs/getting-started/llms.txt): Quick start guide for connecting your app
+- [Webhooks](https://revnu.app/docs/webhooks/llms.txt): Real-time webhook notifications for agent events
+- [CLI](https://revnu.app/docs/cli/llms.txt): Command-line interface for managing your agents
+- [MCP Server](https://revnu.app/docs/mcp/llms.txt): Model Context Protocol server for AI tool integration
+
+## Product
+
+- [Features](https://revnu.app/features/llms.txt): Platform capabilities — AI agents for SEO, A/B testing, ads, outreach, and more
+- [Pricing](https://revnu.app/pricing/llms.txt): Plans and pricing structure
+- [FAQ](https://revnu.app/faq/llms.txt): Frequently asked questions about the platform
+
+## Company
+
+- [About](https://revnu.app/about/llms.txt): Company mission, values, and the problem we solve
+- [Terms](https://revnu.app/terms/llms.txt): Terms of service
+- [Privacy](https://revnu.app/privacy/llms.txt): Privacy policy and data handling
+
+## Key Features
+
+- **GitHub Integration**: Connect your repo, AI agents open PRs directly against your codebase
+- **A/B Testing Agent**: Autonomous multi-variant experiments on your landing pages and site copy
+- **SEO Content Agent**: Programmatic SEO article generation and publishing
+- **Ad Campaign Agents**: AI-managed campaigns across Meta, LinkedIn, and Reddit
+- **Outreach Agent**: Automated PR, growth outreach, and relationship building
+- **Competitor Intelligence**: Real-time monitoring of competitor changes and market shifts
+- **Conversion Optimization**: Session replay analysis, funnel optimization, and site audits
+- **Analytics Dashboard**: Traffic, conversions, funnel analysis, and agent performance metrics
+
+## Resources
+
+- [Tools](https://revnu.app/tools/llms.txt): Free calculators and tools for software businesses
+- [Guides](https://revnu.app/sell/llms.txt): Step-by-step guides for growing your software business
+- [For](https://revnu.app/for/llms.txt): Revnu for specific audiences
+- [Blog](https://revnu.app/blog/llms.txt): Product updates, guides, and thought leadership
+- [Changelog](https://revnu.app/changelog/llms.txt): Weekly product updates and new features
+
+## Contact
+
+- Support: support@revnu.app
+- Legal: legal@revnu.app
+- Discord: https://discord.gg/MBsVQ9eFKg
+- Twitter: https://x.com/revnu_app

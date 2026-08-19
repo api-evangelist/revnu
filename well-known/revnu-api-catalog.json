@@ -1,0 +1,29 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://revnu.app/api/v1",
+      "links": [
+        {
+          "rel": "service-doc",
+          "href": "https://revnu.app/docs/cli",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://revnu.app/api/mcp",
+      "links": [
+        {
+          "rel": "service-doc",
+          "href": "https://revnu.app/docs/mcp",
+          "type": "text/html"
+        },
+        {
+          "rel": "describedby",
+          "href": "https://revnu.app/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

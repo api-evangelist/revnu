@@ -1,0 +1,112 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs
+sources:
+- https://auth.revnu.app/docs/cli
+- https://auth.revnu.app/docs/webhooks
+- https://auth.revnu.app/docs/auth-sdk
+- npm @revnu/cli 0.1.0 (dist/index.js request client)
+- live probes of https://auth.revnu.app
+note: >-
+  Cross-cutting semantics for the Revnu operator API (/api/agent, /api/cli) and
+  the Auth API (/api/auth/revnu). No OpenAPI is published, so response shapes are
+  taken from the first-party client code and from observed live responses.
+authentication:
+  style: bearer API key (operator) / X-Revnu-Key publishable key + RS256 JWT (end user)
+  see: authentication/revnu-authentication.yml
+transport:
+  base: https://auth.revnu.app
+  published_base: https://revnu.app
+  published_base_reachable: false
+  scheme: https only (the CLI refuses a non-https REVNU_API_URL outside dev mode)
+  content_type: application/json
+response_envelope:
+  success:
+    shape: '{"success": true, "data": {...}}'
+    note: >-
+      The first-party client unwraps `data` when both `success` and `data` are
+      present, and otherwise returns the body as-is — so the envelope is not
+      applied uniformly across the API. POST /api/auth/revnu/sign-out returns
+      the bare {"success":true} form.
+  error:
+    shape: '{"error": "<code or short reason>", "message": "<human remediation>"}'
+    note: >-
+      `message` is optional; several endpoints return only `error`. Not RFC 9457
+      — no `type`, no `title`, no application/problem+json.
+    rfc9457: false
+  see: errors/revnu-problem-types.yml
+pagination:
+  style: limit-only
+  params:
+  - limit
+  cursor: false
+  offset: false
+  note: >-
+    List endpoints accept `--limit` (licenses, purchases, analytics purchases) and
+    filters (`--status`, `--from`, `--to`). No cursor, page or offset parameter
+    is documented, and no pagination metadata is described in the docs.
+filtering:
+  params:
+  - status
+  - from
+  - to
+  - limit
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key header, parameter or replay window is documented anywhere
+    in Revnu's docs, CLI, SDKs or MCP tool reference, and none appears in the
+    first-party request client. Creating a product, coupon, affiliate or A/B test
+    twice creates two records. No Idempotency pointer is emitted for this repo.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation header is documented or returned. Responses
+    carry Vercel infrastructure headers (x-vercel-id) only, which are not a
+    documented API contract.
+versioning:
+  scheme: none-published
+  note: >-
+    The api-catalog anchors an entry at https://revnu.app/api/v1, but no /api/v1
+    route resolves on any Revnu host (404 on auth.revnu.app, 404 via revnu.com).
+    The live surfaces are unversioned paths: /api/agent/*, /api/cli/*,
+    /api/auth/revnu/*, /api/mcp.
+  see: lifecycle/revnu-lifecycle.yml
+rate_limiting:
+  documented: false
+  headers: []
+  see: rate-limits/revnu-rate-limits.yml
+webhooks:
+  signature_header: x-rev-signature
+  algorithm: HMAC-SHA256
+  see: asyncapi/revnu-webhooks.yml
+identifiers:
+  style: prefixed opaque string ids
+  examples:
+  - purch_abc123
+  - prod_xyz789
+  see: data-model/revnu-data-model.yml
+money:
+  representation: integer minor units
+  field: amountCents
+  currency_field: currency
+  supported_currencies:
+  - USD
+  - EUR
+  - GBP
+  note: store currency is fixed once products exist; product currency is fixed after
+    Stripe sync
+machine_output:
+  cli_flag: --json
+  note: every CLI command supports --json for machine-readable output
+x-evidence:
+- url: https://auth.revnu.app/api/auth/revnu/sign-out
+  method: POST
+  status: 200
+  body: '{"success":true}'
+- url: https://auth.revnu.app/api/auth/revnu/reset-password
+  method: POST
+  status: 400
+  body: '{"error":"Reset token is required"}'
+- url: https://auth.revnu.app/api/v1
+  status: 404

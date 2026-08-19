@@ -1,0 +1,35 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs
+limit_count: 0
+note: >-
+  Revnu publishes no rate limits for any of its own surfaces. The CLI docs, MCP
+  docs, Auth SDK docs, webhook docs and the complete llms-full.txt dump contain
+  no limit, quota, window, burst or 429 statement about calling Revnu — the only
+  rate-limit language in Revnu's corpus is advice to READERS about limiting their
+  own APIs. Live unauthenticated responses from https://auth.revnu.app carry no
+  RateLimit-*, X-RateLimit-* or Retry-After header on 200, 400, 401 or 405.
+  Recorded as an honest zero, not an omission.
+limits: []
+response_headers:
+  observed: []
+  documented: []
+exhaustion_status: null
+retry_after: null
+polling_guidance:
+- surface: POST /api/cli/device/poll
+  interval_seconds: 5
+  source: the `interval` field the device-code endpoint returns
+  note: the only cadence Revnu publishes anywhere; it is a poll interval, not a rate
+    limit
+x-evidence:
+- url: https://auth.revnu.app/api/cli/device/code
+  method: POST
+  status: 200
+  rate_limit_headers: none
+- url: https://auth.revnu.app/api/agent/context
+  status: 401
+  rate_limit_headers: none
+- url: https://auth.revnu.app/llms-full.txt
+  status: 200
+  note: 82KB of provider documentation, zero statements of a Revnu API rate limit

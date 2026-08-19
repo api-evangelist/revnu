@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every Revnu host
+note: >-
+  Revnu serves a real RFC 9727 API catalog (application/linkset+json) and an MCP
+  server card from the application host auth.revnu.app. The marketing host
+  revnu.com and the vanity host revnu.app (which 308-redirects to revnu.com)
+  return the Next.js 404 HTML shell for every /.well-known/* path, including the
+  two documents that ARE served on auth.revnu.app. The catalog's own link anchors
+  point at https://revnu.app/... which is not where the documents resolve.
+hosts:
+- host: https://auth.revnu.app
+  documents:
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: application/linkset+json
+    file: revnu-api-catalog.json
+    standard: RFC 9727
+  - path: /.well-known/mcp/server-card.json
+    status: 200
+    content_type: application/json
+    file: ../mcp/revnu-mcp-server-card.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/jwks.json
+    status: 404
+- host: https://revnu.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+    note: served on auth.revnu.app, not here
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+    note: served on auth.revnu.app, not here
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://revnu.app
+  note: 308-redirects every path to https://revnu.com
+  documents:
+  - path: /.well-known/api-catalog
+    status: 308
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+    note: 308 to revnu.com, which 404s
+catalog:
+  standard: RFC 9727 (api-catalog)
+  file: revnu-api-catalog.json
+  entries:
+  - anchor: https://revnu.app/api/v1
+    service_doc: https://revnu.app/docs/cli
+    reachable: false
+    note: anchor and service-doc both 404 (revnu.app 308s to revnu.com); the CLI docs
+      are live at https://auth.revnu.app/docs/cli
+  - anchor: https://revnu.app/api/mcp
+    service_doc: https://revnu.app/docs/mcp
+    described_by: https://revnu.app/.well-known/mcp/server-card.json
+    reachable: false
+    note: the live MCP endpoint that answers JSON-RPC is https://auth.revnu.app/api/mcp
+x-evidence:
+- url: https://auth.revnu.app/.well-known/api-catalog
+  status: 200
+- url: https://auth.revnu.app/.well-known/mcp/server-card.json
+  status: 200
+- url: https://revnu.com/.well-known/api-catalog
+  status: 404
+- url: https://revnu.com/.well-known/security.txt
+  status: 404
+- url: https://auth.revnu.app/.well-known/agent-card.json
+  status: 404

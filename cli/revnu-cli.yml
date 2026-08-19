@@ -1,0 +1,165 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs/cli
+sources:
+- https://auth.revnu.app/docs/cli
+- https://auth.revnu.app/docs/cli/llms.txt
+- npm @revnu/cli 0.1.0
+name: revnu
+package: '@revnu/cli'
+package_url: https://www.npmjs.com/package/@revnu/cli
+version: 0.1.0
+install:
+- bun add -g @revnu/cli
+- npm install -g @revnu/cli
+authentication:
+  style: device-code
+  login: revnu auth login
+  flow: >-
+    POST /api/cli/device/code returns {userCode, deviceCode, expiresAt, interval,
+    verificationUrl}; the CLI opens the verification URL and polls POST
+    /api/cli/device/poll every `interval` seconds until status is approved,
+    denied, expired, used or invalid. The resulting access token is stored at
+    ~/.revnu/credentials with mode 0600 and sent as `Authorization: Bearer`.
+  verification_url_published: https://revnu.app/cli/authorize
+  api_base_default: https://revnu.app
+  api_base_override: REVNU_API_URL (must be https outside --dev)
+  note: >-
+    The default base the shipped CLI compiles in (https://revnu.app) 308-redirects
+    to https://revnu.com, where every /api/cli and /api/agent path 404s, so
+    `revnu auth login` fails out of the box. The same routes answer correctly on
+    https://auth.revnu.app — POST https://auth.revnu.app/api/cli/device/code
+    returns HTTP 200 with a live device code.
+global_flags:
+- flag: --json
+  description: machine-readable output on every command
+commands:
+- group: auth
+  description: Authentication commands
+  commands:
+  - command: revnu auth login
+    description: Log in via browser device-code flow
+  - command: revnu auth logout
+    description: Clear saved credentials
+  - command: revnu auth status
+    description: Show authentication state, API base URL, token prefix and expiry
+- group: store
+  description: View and update your store
+  commands:
+  - command: revnu store get
+    description: Get current store details
+  - command: revnu store update
+    description: Update name, description, currency, branding
+    options:
+    - --name
+    - --description
+    - --currency
+- group: products
+  description: Manage products
+  commands:
+  - command: revnu products list
+    options:
+    - --status
+  - command: revnu products get <productId>
+  - command: revnu products create
+    options:
+    - --interval
+    - --description
+    - --features
+    - --max-devices
+    - --currency
+  - command: revnu products update <productId>
+    options:
+    - --name
+    - --description
+    - --price
+    - --active
+    - --features
+    - --max-devices
+  - command: revnu products delete <productId>
+- group: licenses
+  description: Manage license keys
+  commands:
+  - command: revnu licenses list
+    options:
+    - --status
+    - --limit
+  - command: revnu licenses get <licenseKeyId>
+    description: License key details with activations
+  - command: revnu licenses revoke <licenseKeyId>
+  - command: revnu licenses reactivate <licenseKeyId>
+- group: analytics
+  description: View analytics and KPIs
+  commands:
+  - command: revnu analytics kpis
+    description: MRR, ARR, active members, total members, total sales
+  - command: revnu analytics revenue
+    options:
+    - --from
+    - --to
+  - command: revnu analytics purchases
+    options:
+    - --limit
+- group: purchases
+  description: View purchases
+  commands:
+  - command: revnu purchases list
+    options:
+    - --status
+    - --from
+    - --to
+    - --limit
+  - command: revnu purchases get <purchaseId>
+- group: coupons
+  description: Manage coupons
+  commands:
+  - command: revnu coupons list
+    options:
+    - --status
+  - command: revnu coupons create
+  - command: revnu coupons update <couponId>
+  - command: revnu coupons pause <couponId>
+  - command: revnu coupons activate <couponId>
+  - command: revnu coupons delete <couponId>
+- group: affiliates
+  description: Manage the referral program
+  commands:
+  - command: revnu affiliates list
+  - command: revnu affiliates create
+  - command: revnu affiliates update <affiliateId>
+  - command: revnu affiliates delete <affiliateId>
+  - command: revnu affiliates settings
+- group: abtests
+  description: Split-test landing page variants
+  commands:
+  - command: revnu abtests list
+  - command: revnu abtests create
+  - command: revnu abtests results <abTestId>
+  - command: revnu abtests start <abTestId>
+  - command: revnu abtests pause <abTestId>
+  - command: revnu abtests stop <abTestId>
+  - command: revnu abtests delete <abTestId>
+  - command: revnu abtests optimize
+    description: Trigger an AI optimization cycle
+  - command: revnu abtests optimize-status
+    description: Optimization history and score
+key_flows:
+- name: device-code login
+  steps:
+  - revnu auth login
+  - approve at the verification URL
+  - revnu auth status
+- name: agent-run A/B optimization
+  steps:
+  - revnu abtests optimize
+  - revnu abtests optimize-status
+  - revnu abtests results <abTestId>
+x-evidence:
+- url: https://auth.revnu.app/docs/cli
+  status: 200
+- url: https://auth.revnu.app/api/cli/device/code
+  method: POST
+  status: 200
+- url: https://revnu.com/api/cli/device/code
+  method: POST
+  status: 404

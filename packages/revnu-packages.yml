@@ -1,0 +1,114 @@
+generated: '2026-08-13'
+method: searched
+source: https://registry.npmjs.org (unauthenticated registry metadata) + https://auth.revnu.app/docs/cli
+note: >-
+  Ownership confirmed: every @revnu/* package is published by the npm user
+  `revnu` and declares repository github.com/revnu-app/*, and the GitHub org
+  revnu-app publishes blog https://revnu.com and email founders@revnu.com with
+  the description "Your AI growth hire - (YC P26)". Registries checked with no
+  Revnu package present: PyPI (404), RubyGems (404), crates.io, pkg.go.dev,
+  Maven Central, NuGet, Packagist.
+packages:
+- language: javascript
+  registry: npm
+  name: '@revnu/auth'
+  url: https://www.npmjs.com/package/@revnu/auth
+  install: npm install @revnu/auth
+  official: true
+  version: 1.1.0
+  published: '2026-02-13'
+  first_published: '2026-01-20'
+  release_count: 7
+  repository: https://github.com/revnu-app/auth
+  docs: https://auth.revnu.app/docs/auth-sdk
+  description: Authentication SDK for Revnu web app products (Next.js, React + Vite,
+    Hono). JWT/RS256 verification, prebuilt sign-in components, product-access guards.
+- language: javascript
+  registry: npm
+  name: '@revnu/setup'
+  url: https://www.npmjs.com/package/@revnu/setup
+  install: npx @revnu/setup
+  official: true
+  version: 0.3.0
+  published: '2026-03-17'
+  first_published: '2026-02-04'
+  release_count: 17
+  repository: https://github.com/revnu-app/revnu
+  bin:
+  - setup
+  - revnu-setup
+  description: Onboarding CLI that sets up a Revnu store via AI agents; carries the
+    device-code login flow used by the CLI.
+- language: javascript
+  registry: npm
+  name: '@revnu/cli'
+  url: https://www.npmjs.com/package/@revnu/cli
+  install: npm install -g @revnu/cli
+  official: true
+  version: 0.1.0
+  published: '2026-02-24'
+  first_published: '2026-02-24'
+  release_count: 1
+  repository: https://github.com/revnu-app/revnu
+  bin:
+  - revnu
+  docs: https://auth.revnu.app/docs/cli
+  description: CLI for managing a Revnu store, products, coupons, affiliates, A/B tests,
+    licenses and analytics.
+- language: javascript
+  registry: npm
+  name: '@revnu/sdk'
+  url: https://www.npmjs.com/package/@revnu/sdk
+  install: npm install @revnu/sdk
+  official: true
+  version: 0.1.1
+  published: '2026-04-02'
+  first_published: '2026-03-25'
+  release_count: 2
+  repository: https://github.com/revnu-app/revnu
+  description: A/B testing SDK for Next.js — zero-flicker variant serving with per-page
+    test support.
+- language: javascript
+  registry: npm
+  name: '@revnu/fuast'
+  url: https://www.npmjs.com/package/@revnu/fuast
+  install: npx @revnu/fuast
+  official: false
+  version: 0.1.0
+  published: '2026-07-26'
+  first_published: '2026-07-26'
+  release_count: 1
+  repository: https://github.com/ctrl-cheeb-del/fuast
+  homepage: https://fuast.com
+  description: Published under the @revnu npm scope by the same maintainer, but its
+    homepage and repository belong to a separate project (fuast.com). Recorded for
+    completeness; not a Revnu client library.
+currency:
+  note: >-
+    Every first-party package predates the current product. The newest Revnu
+    client library, @revnu/sdk 0.1.1, was published 2026-04-02, and the CLI the
+    docs tell you to install (@revnu/cli 0.1.0) has had exactly one release
+    since 2026-02-24 — while the published changelog runs weekly through
+    2026-03-31 and the MCP server documents 49 tools. The packaged surface has
+    not tracked the API.
+  newest_first_party_release: '2026-04-02'
+  oldest_first_party_release: '2026-01-20'
+registries_checked:
+- registry: npm
+  found: 5
+- registry: pypi
+  found: 0
+  status: 404
+- registry: rubygems
+  found: 0
+  status: 404
+- registry: crates.io
+  found: 0
+- registry: pkg.go.dev
+  found: 0
+- registry: maven-central
+  found: 0
+- registry: nuget
+  found: 0
+- registry: packagist
+  found: 0

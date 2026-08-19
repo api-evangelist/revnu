@@ -1,0 +1,94 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs/webhooks
+spec_type: none
+asyncapi_published: false
+note: >-
+  Revnu documents a real webhook surface but publishes no AsyncAPI document
+  (no /asyncapi.yaml or /asyncapi.json on any Revnu host, nothing in the
+  revnu-app GitHub org). This file captures the published webhook catalogue
+  verbatim from the provider's own docs; it is not an AsyncAPI and is not
+  presented as one.
+delivery:
+  direction: outbound (Revnu -> subscriber endpoint)
+  configuration: Dashboard -> Webhooks
+  transport: HTTPS POST, application/json
+  timeout_seconds: 10
+  retries: 4
+  retry_schedule:
+  - attempt: 1
+    after: 1 minute
+  - attempt: 2
+    after: 5 minutes
+  - attempt: 3
+    after: 30 minutes
+  - attempt: 4
+    after: 2 hours
+  backoff: exponential
+security:
+  algorithm: HMAC-SHA256
+  signature_header: x-rev-signature
+  secret: per-endpoint webhook secret from Dashboard -> Webhooks (env var REV_WEBHOOK_SECRET
+    in the published example)
+  verification: HMAC of the raw request body compared against the header value
+envelope:
+  event: event name
+  data: event payload object
+  timestamp: ISO 8601 UTC
+events:
+- name: purchase.completed
+  description: A customer completed a purchase (one-time or subscription).
+  payload_fields:
+  - purchaseId
+  - buyerEmail
+  - buyerName
+  - productId
+  - productName
+  - amountCents
+  - currency
+  - isSubscription
+  - status
+  - currentPeriodEnd
+- name: purchase.cancelled
+  description: A subscription was cancelled.
+  payload_fields:
+  - purchaseId
+  - buyerEmail
+  - productId
+  - productName
+  - status
+- name: payment.failed
+  description: A recurring payment failed.
+  payload_fields:
+  - purchaseId
+  - buyerEmail
+  - productId
+  - productName
+  - status
+- name: plan.switched
+  description: A customer upgraded or downgraded their subscription.
+  payload_fields:
+  - purchaseId
+  - buyerEmail
+  - previousProductId
+  - previousProductName
+  - newProductId
+  - newProductName
+  - amountCents
+  - currency
+guidance_from_docs: >-
+  Revnu's own docs recommend the Auth SDK over webhooks for web-app access
+  control, and position webhooks for syncing purchases into your own database,
+  triggering notifications, third-party integrations and custom subscription
+  logic.
+x-evidence:
+- url: https://auth.revnu.app/docs/webhooks
+  status: 200
+- url: https://auth.revnu.app/docs/webhooks/llms.txt
+  status: 200
+- url: https://revnu.com/asyncapi.yaml
+  status: 404
+- url: https://auth.revnu.app/asyncapi.yaml
+  status: 404
+- url: https://auth.revnu.app/asyncapi.json
+  status: 404

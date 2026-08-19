@@ -1,0 +1,131 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs/auth-sdk
+docs: https://auth.revnu.app/docs/auth-sdk
+sources:
+- https://auth.revnu.app/docs/auth-sdk
+- https://auth.revnu.app/docs/mcp
+- https://auth.revnu.app/docs/cli
+- https://auth.revnu.app/.well-known/mcp/server-card.json
+- npm @revnu/auth 1.1.0 README + dist
+note: >-
+  Revnu publishes no OpenAPI, so this profile is read from the provider's own
+  docs and first-party packages and confirmed by live probes. There is no OIDC
+  or OAuth 2.0 discovery document on any Revnu host
+  (/.well-known/openid-configuration and /.well-known/oauth-authorization-server
+  both 404), so `scopes/` is deliberately absent — Revnu is a key/JWT provider,
+  not a scoped-OAuth one.
+summary:
+  types:
+  - http
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows: []
+  audiences:
+  - operator (store owner, via CLI/MCP)
+  - end user (a store's buyer, via the Auth SDK)
+schemes:
+- name: agentApiKey
+  type: http
+  scheme: bearer
+  audience: operator
+  header: Authorization
+  key_prefixes:
+  - rev_cli_
+  - rev_
+  issued_at: Revnu dashboard -> CLI -> "API Keys & MCP"
+  used_by:
+  - https://auth.revnu.app/api/mcp
+  - /api/agent/*
+  source: https://auth.revnu.app/.well-known/mcp/server-card.json
+- name: cliDeviceToken
+  type: http
+  scheme: bearer
+  audience: operator
+  header: Authorization
+  grant: device-code
+  endpoints:
+  - POST /api/cli/device/code
+  - POST /api/cli/device/poll
+  poll_states:
+  - approved
+  - denied
+  - expired
+  - used
+  - invalid
+  - pending
+  storage: ~/.revnu/credentials (0600)
+  standard_alignment: device-code shaped, but not RFC 8628 — the endpoints, the field
+    names (userCode/deviceCode/verificationUrl/expiresAt) and the poll semantics are
+    Revnu's own, and there is no authorization-server metadata document
+  source: npm @revnu/cli 0.1.0
+- name: revnuPublishableKey
+  type: apiKey
+  in: header
+  name_: X-Revnu-Key
+  audience: end user (browser)
+  key_prefix: rev_pub_
+  env_vars:
+  - NEXT_PUBLIC_REVNU_KEY
+  - VITE_REVNU_KEY
+  - REVNU_KEY
+  used_by: https://auth.revnu.app/api/auth/revnu/*
+  note: publishable, safe to ship in a client bundle; identifies the store
+  source: https://auth.revnu.app/docs/auth-sdk
+- name: revnuSessionJWT
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  audience: end user
+  algorithm: RS256
+  issuer: revnu-auth
+  verification: asymmetric, public key embedded in @revnu/auth — no secret to configure
+  cookie: revnu_access_token
+  claims:
+  - sub
+  - email
+  - name
+  - iat
+  - exp
+  - products[] (productId, status, cancelAtPeriodEnd, currentPeriodEnd)
+  refresh: POST /api/auth/revnu/refresh (refresh token in an http-only cookie)
+  source: npm @revnu/auth 1.1.0 dist/core
+model:
+  end_user: >-
+    Purchase-first. Buying a product creates the account; a setup-link email lets
+    the buyer set a password. There is no separate sign-up flow. Product
+    entitlement is embedded in the JWT, so access checks need no webhook and no
+    call back to Revnu.
+  operator: >-
+    Dashboard-issued bearer API key for MCP and the /api/agent REST surface, or a
+    browser-approved device-code token for the CLI.
+endpoints:
+  auth_base: https://auth.revnu.app
+  paths:
+  - POST /api/auth/revnu/sign-in
+  - POST /api/auth/revnu/sign-out
+  - POST /api/auth/revnu/refresh
+  - GET /api/auth/revnu/store-info
+  - POST /api/auth/revnu/forgot-password
+  - POST /api/auth/revnu/reset-password
+  - POST /api/auth/revnu/setup-password
+  - POST /api/auth/revnu/request-setup-link
+x-evidence:
+- url: https://auth.revnu.app/api/auth/revnu/sign-in
+  method: POST (no key)
+  status: 401
+  body: '{"error":"Missing X-Revnu-Key header"}'
+- url: https://auth.revnu.app/api/auth/revnu/store-info
+  method: GET (bad key)
+  status: 401
+  body: '{"error":"Invalid public key"}'
+- url: https://auth.revnu.app/api/agent/context
+  method: GET (no header)
+  status: 401
+  body: '{"error":"Unauthorized","message":"Invalid or expired CLI token. Run `npx @revnu/setup
+    auth login` to re-authenticate."}'
+- url: https://auth.revnu.app/.well-known/openid-configuration
+  status: 404
+- url: https://auth.revnu.app/.well-known/oauth-authorization-server
+  status: 404

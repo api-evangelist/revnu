@@ -1,0 +1,62 @@
+generated: '2026-08-13'
+method: searched
+source: https://revnu.com/pricing
+sources:
+- https://revnu.com/pricing
+- https://auth.revnu.app/pricing/llms.txt
+- https://auth.revnu.app/docs/getting-started
+plan_count: 1
+currency: USD
+note: >-
+  Revnu's two published pricing surfaces disagree. The current marketing pricing
+  page (revnu.com/pricing) is quote-only — "one flat monthly fee, set by which
+  features and channels you want", with a book-a-call CTA and no number. The
+  developer docs on the application host still state a concrete price: free for
+  7 days, no card, then $299/month, cancel anytime. Both were live on 2026-08-13.
+  The single tier below is the docs figure; treat it as the only published price
+  and the marketing page as the current sales motion.
+plans:
+- name: Revnu (flat monthly)
+  price: 299
+  currency: USD
+  period: month
+  source: https://auth.revnu.app/docs/getting-started
+  trial:
+    days: 7
+    card_required: false
+  cancellation: cancel anytime, one click, pro-rated, no minimum term
+  scope: scope up or down at any time; the fee moves with the features and channels
+    selected
+  included:
+  - Multi-variant A/B testing
+  - AI SEO content generation
+  - Session replay analysis
+  - Automated site audits
+  - Competitor keyword research
+  - Ad campaign management (Meta, LinkedIn, Reddit)
+  - Outreach and PR automation
+  - Pricing experiments
+  - Daily growth reports
+  quota: null
+  overage: null
+  limits: none published
+quote_only:
+  url: https://revnu.com/pricing
+  cta: Book a demo — "we'll quote you in 15 minutes"
+  note: no tier table, no numbers on the page
+additional_fees:
+- name: Stripe processing
+  detail: standard Stripe fees apply
+- name: Platform fee
+  detail: charged on sales; refunded when a sale is refunded; no monthly minimums
+api_pricing:
+  metered: false
+  note: no API-, MCP- or call-based pricing is published; the CLI, MCP server and Auth
+    SDK are included with the platform subscription
+x-evidence:
+- url: https://revnu.com/pricing
+  status: 200
+- url: https://auth.revnu.app/pricing/llms.txt
+  status: 200
+- url: https://auth.revnu.app/docs/getting-started
+  status: 200

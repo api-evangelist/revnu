@@ -1,0 +1,76 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs
+sources:
+- https://auth.revnu.app/changelog
+- https://auth.revnu.app/.well-known/api-catalog
+- https://auth.revnu.app/docs/cli
+- npm registry metadata for @revnu/*
+versioning:
+  scheme: none-published
+  current: null
+  docs: null
+  note: >-
+    No API version appears in any live path. The RFC 9727 api-catalog anchors an
+    entry at https://revnu.app/api/v1, but /api/v1 returns 404 on the host that
+    serves the catalog, so the only version marker Revnu publishes does not
+    resolve. Live surfaces are unversioned: /api/agent/*, /api/cli/*,
+    /api/auth/revnu/*, /api/mcp.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: no deprecation or sunset policy is published, and no Deprecation/Sunset header
+    was observed on any probed response
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  note: no status.revnu.com / status.revnu.app host exists (NXDOMAIN) and no status
+    page is linked from the site, docs or footer
+support:
+  email: support@revnu.app
+  legal: legal@revnu.app
+  discord: https://discord.gg/MBsVQ9eFKg
+  contact: https://revnu.com/contact
+host_drift:
+  finding: >-
+    Every URL Revnu publishes for its own API points at https://revnu.app, which
+    308-redirects to the marketing site https://revnu.com, where every /api/*
+    path returns the Next.js 404 HTML shell. The working host for the docs, the
+    api-catalog, the MCP server card, the MCP endpoint, the /api/agent REST
+    surface and the /api/auth Auth API is https://auth.revnu.app.
+  affects:
+  - the MCP endpoint in the docs, the server card and the api-catalog (https://revnu.app/api/mcp)
+  - the copy-paste Cursor / Claude Code / Claude Desktop / Codex configs
+  - the CLI's compiled default base (https://revnu.app) — `revnu auth login` fails
+    unless REVNU_API_URL is overridden
+  - the device-flow verification URL (https://revnu.app/cli/authorize)
+  - the remediation URL in the 401 body (https://revnu.app/dashboard/settings)
+  - every link in https://auth.revnu.app/llms.txt
+  evidence:
+  - url: https://revnu.app/api/mcp
+    status: 308
+  - url: https://revnu.com/api/mcp
+    status: 404
+  - url: https://auth.revnu.app/api/mcp
+    status: 401
+product_lifecycle:
+  finding: >-
+    The commerce/storefront product the CLI and MCP tool surface manage (stores,
+    products, licenses, coupons, affiliates, Discord roles) is the generation
+    that preceded the current "connect mode" positioning. The 2026-03-31
+    changelog entry states Revnu is now connect-only, the marketing site sells an
+    AI growth hire with no store surface, and the newest first-party client
+    package shipped 2026-04-02. The APIs remain live and auth-gated.
+  last_changelog_entry: '2026-03-31'
+  last_first_party_package_release: '2026-04-02'
+deprecated_operations: []
+x-evidence:
+- url: https://auth.revnu.app/changelog
+  status: 200
+- url: https://auth.revnu.app/api/v1
+  status: 404
+- url: https://status.revnu.com
+  status: null
+  note: DNS NXDOMAIN — no such host

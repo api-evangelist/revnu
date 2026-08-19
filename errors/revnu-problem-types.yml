@@ -1,0 +1,97 @@
+generated: '2026-08-13'
+method: probed
+source: live unauthenticated requests against https://auth.revnu.app
+format: custom-json
+rfc9457: false
+note: >-
+  Revnu publishes no error reference and no OpenAPI, so this catalogue is built
+  from error responses observed live on the provider's own host, plus the error
+  branches in the first-party @revnu/cli and @revnu/setup packages. The envelope
+  is {"error": "...", "message": "..."} with `message` optional; there is no
+  `type` URI, no `title`, and no application/problem+json media type, so agents
+  must match on the literal `error` string.
+envelope:
+  error: short reason or code
+  message: human-readable remediation (optional)
+problems:
+- status: 401
+  error: Unauthorized
+  message: Invalid or expired CLI token. Run `npx @revnu/setup auth login` to re-authenticate.
+  surface: GET /api/agent/context (no Authorization header)
+  observed: true
+- status: 401
+  error: Unauthorized
+  message: Invalid or expired API key. Generate a new one at https://revnu.app/dashboard/settings.
+  surface: GET /api/agent/* (bad bearer key)
+  observed: true
+  note: the remediation URL it hands the caller 308-redirects to revnu.com and 404s
+- status: 401
+  error: 'Unauthorized: Missing or invalid Bearer token'
+  surface: POST https://auth.revnu.app/api/mcp (JSON-RPC error code -32001)
+  observed: true
+  jsonrpc_code: -32001
+- status: 401
+  error: Missing X-Revnu-Key header
+  surface: POST /api/auth/revnu/sign-in
+  observed: true
+- status: 401
+  error: Invalid public key
+  surface: GET /api/auth/revnu/store-info
+  observed: true
+- status: 401
+  error: No refresh token provided
+  surface: POST /api/auth/revnu/refresh
+  observed: true
+- status: 400
+  error: Email and password are required
+  surface: POST /api/auth/revnu/sign-in
+  observed: true
+- status: 400
+  error: Reset token is required
+  surface: POST /api/auth/revnu/reset-password
+  observed: true
+- status: 400
+  error: Setup token is required
+  surface: POST /api/auth/revnu/setup-password
+  observed: true
+- status: 400
+  error: Email is required
+  surface: POST /api/auth/revnu/request-setup-link
+  observed: true
+- status: 405
+  error: null
+  surface: any documented path called with the wrong method (empty body)
+  observed: true
+  note: 405 responses have no body at all, so a client cannot tell a method error from
+    a network failure without reading the status
+- status: 404
+  error: null
+  surface: every /api/* path on revnu.com and revnu.app
+  observed: true
+  note: returns the Next.js HTML 404 shell, not JSON — an agent following the published
+    base URL gets HTML where it expects JSON
+device_authorization_states:
+  surface: POST /api/cli/device/poll
+  source: npm @revnu/cli 0.1.0
+  states:
+  - state: pending
+    meaning: user has not yet approved; keep polling at `interval`
+  - state: approved
+    meaning: returns accessToken + expiresAt
+  - state: denied
+    meaning: user rejected the authorization
+  - state: expired
+    meaning: device code lifetime elapsed; restart the flow
+  - state: used
+    meaning: device code already exchanged; restart the flow
+  - state: invalid
+    meaning: unknown device code
+x-evidence:
+- url: https://auth.revnu.app/api/agent/context
+  status: 401
+- url: https://auth.revnu.app/api/auth/revnu/sign-in
+  status: 400
+- url: https://auth.revnu.app/api/mcp
+  status: 401
+- url: https://revnu.com/api/agent/context
+  status: 404

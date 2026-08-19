@@ -1,0 +1,81 @@
+generated: '2026-08-13'
+method: derived
+source: probes of https://auth.revnu.app + https://auth.revnu.app/docs
+note: >-
+  Derived from live probes and the provider's own documentation. Revnu publishes
+  no compliance program, no certifications and no trust center, so no Compliance
+  pointer is emitted for this repo.
+standards:
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: live JSON-RPC server at https://auth.revnu.app/api/mcp answering with MCP
+    error codes; streamable-http transport; server card at /.well-known/mcp/server-card.json
+- id: rfc9727-api-catalog
+  name: RFC 9727 api-catalog
+  conforms: true
+  evidence: https://auth.revnu.app/.well-known/api-catalog returns application/linkset+json
+    with a valid linkset[]/anchor/links structure
+  caveat: every anchor and href in the catalog resolves to a 308/404, so the document
+    is well-formed but not actionable
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: /.well-known/security.txt is 404 on revnu.com, revnu.app and auth.revnu.app
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: no authorization endpoint, no token endpoint, no scopes; bearer keys are
+    minted in the dashboard
+- id: rfc8628-device-authorization-grant
+  name: RFC 8628 device authorization grant
+  conforms: false
+  evidence: >-
+    the CLI login is device-code SHAPED but not RFC 8628 — the endpoints are
+    /api/cli/device/code and /api/cli/device/poll rather than a
+    device_authorization endpoint and the token endpoint, the fields are
+    userCode/deviceCode/verificationUrl/expiresAt rather than
+    user_code/device_code/verification_uri/expires_in, and there is no
+    authorization-server metadata document
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host
+- id: rfc7519-jwt
+  name: JSON Web Token
+  conforms: true
+  evidence: end-user sessions are RS256 JWTs with issuer `revnu-auth`, verified via
+    an embedded public key in @revnu/auth
+- id: rfc9457-problem-details
+  name: RFC 9457 problem details
+  conforms: false
+  evidence: errors use {"error","message"} with content-type application/json; no type/title,
+    no application/problem+json
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: no OpenAPI/Swagger document at any probed path on revnu.com, revnu.app,
+    auth.revnu.app
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: webhooks are documented in prose; /asyncapi.yaml and /asyncapi.json 404
+    on every host
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json 404 on every host
+- id: hsts
+  name: HTTP Strict Transport Security
+  conforms: true
+  evidence: strict-transport-security max-age=63072000 observed on revnu.com and auth.revnu.app
+- id: idempotency
+  name: Idempotent write semantics
+  conforms: false
+  evidence: no idempotency key documented in any surface
+compliance_program:
+  published: false
+  certifications: []
+  trust_center: null
+  evidence: probe-security-programs.py found no vulnerability-disclosure program and
+    no trust center

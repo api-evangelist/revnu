@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+source: https://auth.revnu.app/docs/auth-sdk
+sources:
+- https://auth.revnu.app/docs/auth-sdk
+- npm @revnu/auth 1.1.0 README
+loaders:
+- name: '@revnu/auth'
+  registry: npm
+  version: 1.1.0
+  type: react-component-library
+  frameworks:
+  - next.js
+  - react + vite
+  - hono (server middleware only)
+  config: single env var per framework (NEXT_PUBLIC_REVNU_KEY / VITE_REVNU_KEY / REVNU_KEY),
+    publishable key prefix rev_pub_
+  note: RS256 verification with an embedded public key, so no secret is configured
+    client-side
+families:
+- family: Auth surfaces
+  components:
+  - name: SignIn
+    description: Prebuilt sign-in form with automatic store branding (logo + store name)
+  - name: SignInButton
+    description: Sign-in trigger with modal or redirect mode
+  - name: SetPassword
+    description: Password setup for a new buyer arriving from a setup-link email
+  - name: ForgotPassword
+    description: Password reset request form
+- family: Identity surfaces
+  components:
+  - name: UserButton
+    description: Signed-in user menu
+  - name: Avatar
+    description: User avatar
+- family: Access guards
+  components:
+  - name: SignedIn
+    description: Renders children only for an authenticated user
+  - name: SignedOut
+    description: Renders children only for an anonymous visitor
+  - name: Protect
+    description: Renders children only when the user holds access to a given product
+- family: Hosted surfaces
+  components:
+  - name: Storefront
+    description: Hosted store at <subdomain>.revnu.dev with product listing, Stripe
+      checkout and generated legal pages; custom domains supported via A + CNAME records
+    source: https://auth.revnu.app/docs/storefronts
+  - name: AI landing page
+    description: Generated and deployed landing pages with version history, used as
+      A/B test variants
+    source: https://auth.revnu.app/docs/storefronts
+customization:
+  appearance:
+  - colors
+  - border radius
+  - fonts
+  branding: store logo and name are injected into the sign-in surface automatically
+hooks:
+- name: useRevnuAuth()
+  description: Auth state and product-access checks
+x-evidence:
+- url: https://auth.revnu.app/docs/auth-sdk
+  status: 200

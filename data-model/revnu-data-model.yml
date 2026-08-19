@@ -1,0 +1,198 @@
+generated: '2026-08-13'
+method: derived
+source: https://auth.revnu.app/docs/cli + https://auth.revnu.app/docs/webhooks + mcp/revnu-mcp.yml
+note: >-
+  Revnu publishes no OpenAPI, so this entity graph is derived from the documented
+  CLI resource surface, the MCP tool reference, the webhook payload fields and
+  the first-party @revnu/auth JWT claims. Field lists are the ones the provider
+  actually names; where a relationship is implied by an id field the `via` names
+  that field.
+id_style: prefixed opaque strings
+id_prefixes:
+- entity: purchase
+  prefix: purch_
+  example: purch_abc123
+- entity: product
+  prefix: prod_
+  example: prod_xyz789
+entities:
+- name: store
+  description: The seller's storefront — name, description, currency, branding, product
+    types, subdomain
+  fields:
+  - name
+  - description
+  - currency
+  - productTypes
+  - subdomain
+  - appUrl
+  constraints:
+  - currency cannot be changed once products exist
+  surfaces:
+  - GET /api/agent/context
+  - PATCH /api/agent/store
+  - MCP get_context, create_store, update_store, switch_store, set_product_types
+- name: product
+  description: A sellable item with price, billing interval, delivery features and
+    status
+  fields:
+  - productId
+  - name
+  - description
+  - price (cents)
+  - interval (one-time | monthly)
+  - currency
+  - features
+  - maxDevices
+  - isActive
+  - status (draft | active)
+  constraints:
+  - currency is fixed after Stripe sync
+  - products start as draft and become active once synced to Stripe
+  delivery_features:
+  - web_app
+  - discord
+- name: purchase
+  description: A completed sale or subscription record
+  fields:
+  - purchaseId
+  - buyerEmail
+  - buyerName
+  - amountCents
+  - currency
+  - isSubscription
+  - status (active | cancelled | past_due | paused | awaiting_join)
+  - currentPeriodEnd
+  - cancelAtPeriodEnd
+  - refundStatus
+  - stripeCustomer
+- name: buyer
+  description: The end user who purchased; the account is created by the purchase itself
+  fields:
+  - sub (user id)
+  - email
+  - name
+  - products[]
+  note: represented inside the RS256 session JWT as sub/email/name/products[]
+- name: license_key
+  description: A key issued against a purchase, with activations, revocable and reactivatable
+  fields:
+  - licenseKeyId
+  - status
+  - activations
+- name: coupon
+  description: Discount code with type, value, duration and scope
+  fields:
+  - couponId
+  - code
+  - discountType (percent | fixed)
+  - discountValue
+  - duration (once | repeating | forever)
+  - durationInMonths
+  - scope (all | specific)
+  - maxRedemptions
+  - firstPurchaseOnly
+  - minimumAmount
+  - expiresAt
+  - status (active | paused)
+  constraints:
+  - code, discount type and discount value cannot be changed after creation
+- name: affiliate
+  description: A referrer earning commission on tracked purchases
+  fields:
+  - affiliateId
+  - name
+  - email
+  - status
+- name: affiliate_settings
+  description: Store-level referral program configuration
+  fields:
+  - defaultCommissionType
+  - defaultCommissionValue
+  - defaultDiscountType
+  - defaultDiscountValue
+  - cookieExpirationDays
+  - minimumPayoutCents
+- name: abtest
+  description: A split test across landing page variants
+  fields:
+  - abTestId
+  - variants[] (deployment + weight 0-100, must sum to 100)
+  - durationDays (1-90)
+  - goalEvent (default checkout_completed)
+  - status (draft | running | paused | completed)
+  constraints:
+  - at least 2 variants
+  - variants and weights editable only while draft
+  - traffic allocated by Thompson sampling
+- name: landing_page_deployment
+  description: A generated/deployed landing page version, restorable and usable as an
+    A/B variant
+  fields:
+  - deploymentId
+  - version
+- name: webhook_endpoint
+  description: A subscriber URL with an HMAC secret
+  fields:
+  - url
+  - secret
+relationships:
+- from: store
+  to: product
+  type: has_many
+- from: product
+  to: purchase
+  type: has_many
+  via: productId
+- from: purchase
+  to: buyer
+  type: belongs_to
+  via: buyerEmail
+- from: purchase
+  to: product
+  type: belongs_to
+  via: productId
+- from: purchase
+  to: license_key
+  type: has_many
+- from: buyer
+  to: product
+  type: has_many
+  via: products[].productId
+  note: entitlement is embedded in the session JWT
+- from: store
+  to: coupon
+  type: has_many
+- from: coupon
+  to: product
+  type: has_many
+  via: scope=specific
+- from: store
+  to: affiliate
+  type: has_many
+- from: store
+  to: affiliate_settings
+  type: has_one
+- from: affiliate
+  to: purchase
+  type: has_many
+  via: referral cookie
+- from: store
+  to: abtest
+  type: has_many
+- from: abtest
+  to: landing_page_deployment
+  type: has_many
+  via: variants[]
+- from: store
+  to: webhook_endpoint
+  type: has_many
+events_emitted:
+- purchase.completed
+- purchase.cancelled
+- payment.failed
+- plan.switched
+see:
+- asyncapi/revnu-webhooks.yml
+- mcp/revnu-tool-crosswalk.yml
+- cli/revnu-cli.yml

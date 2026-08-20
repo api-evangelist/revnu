@@ -39,6 +39,19 @@ tags:
 - Growth Automation
 - Marketing
 - Artificial Intelligence
+- Software-as-a-Service
+- Startups
+- Lead Generation
+- SEO
+- MCP
+- Agents
+- Commerce
+- A/B Testing
+tags_raw:
+- Company
+- Growth Automation
+- Marketing
+- Artificial Intelligence
 - SaaS
 - Startups
 - Lead Generation
@@ -212,6 +225,9 @@ apis:
   humanURL: https://auth.revnu.app/docs/auth-sdk
   baseURL: https://auth.revnu.app
   tags:
+  - Authentication
+  - Software-as-a-Service
+  tags_raw:
   - Authentication
   - SaaS
   properties:

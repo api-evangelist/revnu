@@ -13,23 +13,25 @@ deployment:
   published_endpoint: https://revnu.app/api/mcp
   auth: api-key
   verified: probed
-  note: >-
-    The endpoint Revnu publishes in its own docs, its MCP server card and its
-    RFC 9727 api-catalog is https://revnu.app/api/mcp. That host 308-redirects
-    every path to https://revnu.com, which returns a 404 HTML shell, so every
-    copy-paste config in the docs (Cursor, Claude Code, Claude Desktop, Codex)
-    fails as published. The server that actually answers MCP JSON-RPC is
-    https://auth.revnu.app/api/mcp — an anonymous POST of tools/list there
-    returns HTTP 401 {"code":-32001,"message":"Unauthorized: Missing or invalid
-    Bearer token"}, i.e. a live, auth-gated MCP server.
+  note: 'The endpoint Revnu publishes in its own docs, its MCP server card and its RFC 9727 api-catalog
+    is https://revnu.app/api/mcp. That host 308-redirects every path to https://revnu.com, which returns
+    a 404 HTML shell, so every copy-paste config in the docs (Cursor, Claude Code, Claude Desktop, Codex)
+    fails as published. The server that actually answers MCP JSON-RPC is https://auth.revnu.app/api/mcp
+    — an anonymous POST of tools/list there returns HTTP 401 {"code":-32001,"message":"Unauthorized: Missing
+    or invalid Bearer token"}, i.e. a live, auth-gated MCP server.'
+  probe_prior: (never probed)
+  probe: gated
+  probe_why: JSON-RPC error envelope -- the MCP server answered
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 server:
   name: revnu
   version: 1.0.0
   transport: streamable-http
   url: https://auth.revnu.app/api/mcp
   server_card: revnu-mcp-server-card.json
-  description: Manage a Revnu store, products, A/B tests, SEO content, ads, coupons,
-    affiliates, and analytics via MCP.
+  description: Manage a Revnu store, products, A/B tests, SEO content, ads, coupons, affiliates, and analytics
+    via MCP.
   capabilities:
     tools:
       listChanged: false
@@ -42,20 +44,18 @@ authentication:
   - rev_
   issuer: Revnu dashboard, Dashboard -> CLI -> "API Keys & MCP"
   token_issuer_url: https://revnu.app/dashboard/cli
-  note: tools/list is auth-gated, so tool inputSchemas could not be introspected;
-    the tools below are the provider's own published tool reference (names and
-    descriptions only).
+  note: tools/list is auth-gated, so tool inputSchemas could not be introspected; the tools below are
+    the provider's own published tool reference (names and descriptions only).
 tool_count_claimed:
   server_card: 50+ tools across 12 modules
   docs_markdown: 50 tools across 12 modules
   docs_html: 43 tools across 11 modules
-  note: the provider's own three surfaces disagree on the count; 49 distinct tool
-    names are actually enumerated in the docs tables captured below
+  note: the provider's own three surfaces disagree on the count; 49 distinct tool names are actually enumerated
+    in the docs tables captured below
 tools:
 - name: get_context
   module: store
-  description: Get full onboarding context including store, products, connections,
-    and next steps
+  description: Get full onboarding context including store, products, connections, and next steps
 - name: create_store
   module: store
   description: Create a new store with name, subdomain, and optional settings
@@ -196,8 +196,8 @@ tools:
   description: Poll landing page generation progress
 - name: trigger_optimization_cycle
   module: optimization
-  description: Trigger an AI optimization cycle that analyzes your landing page, creates
-    a variant, and starts an A/B test
+  description: Trigger an AI optimization cycle that analyzes your landing page, creates a variant, and
+    starts an A/B test
 - name: get_optimization_status
   module: optimization
   description: Get current optimization status, recent history, and settings
@@ -210,8 +210,7 @@ x-evidence:
 - url: https://auth.revnu.app/api/mcp
   method: POST tools/list (anonymous)
   status: 401
-  body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Unauthorized: Missing or
-    invalid Bearer token"},"id":null}'
+  body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Unauthorized: Missing or invalid Bearer token"},"id":null}'
 - url: https://auth.revnu.app/api/mcp
   method: GET
   status: 405

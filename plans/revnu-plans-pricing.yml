@@ -60,3 +60,17 @@ x-evidence:
   status: 200
 - url: https://auth.revnu.app/docs/getting-started
   status: 200
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Revnu (flat monthly)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month

@@ -64,6 +64,162 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Revnu is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Revnu is an AI growth-automation platform for early-stage and technical founders, positioning itself as an "AI growth hire" that runs marketing work across channels so builders can stay in the codebase. The platform finds and qualifies leads from real signals, drafts cold outbound and partnership pitches, writes SEO content, runs paid ad experiments across Meta, LinkedIn, Reddit, and TikTok, turns product wins into short-form video and social posts, and tests pricing and landing-page copy. Founded in 2026 out of the Y Combinator Spring 2026 batch and based in San Francisco, Revnu is agent-first rather than API-first: it publishes no OpenAPI, but it does ship a live remote MCP server with a documented 49-tool surface, a first-party CLI, an authentication SDK for a customer's own app, an HMAC-signed webhook catalog, an RFC 9727 api-catalog, and machine-readable llms.txt context files across its hosts.
 
-Backed by: y-combinator
+**Areas:** Company · Growth Automation · Marketing · Artificial Intelligence · Software-as-a-Service · Startups · Lead Generation · SEO · MCP · Agents · Commerce · A/B Testing
+
+## Revnu on APIs.io
+
+Everything profiled for Revnu is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/revnu/](https://apis.io/providers/revnu/)** — or go straight to one of the APIs or properties below.
+
+### APIs (5)
+
+- [Revnu MCP Server](https://apis.io/apis/revnu/revnu-mcp-server/) — A live remote MCP server over streamable HTTP that gives an AI assistant operator-level control of a Revnu store — 49 documented tools across store,…
+- [Revnu Auth API](https://apis.io/apis/revnu/revnu-auth-api/) — The authentication API behind the @revnu/auth SDK, serving a Revnu store's buyers. Purchase-first — buying a product creates the account and sends a…
+- [Revnu API Reference API](https://apis.io/apis/revnu/revnu-api-reference-api/) — The personal-token API at /api/v1: review queue, agent, results, workflows, leads, LinkedIn lookups and the block list, plus the no-token website preview.
+- [Revnu Content API](https://apis.io/apis/revnu/revnu-content-api-api/) — Read-only JSON for the posts Revnu publishes, for rendering a blog on your own site.
+- [Revnu Measurement API](https://apis.io/apis/revnu/revnu-measurement-api/) — Server-side conversion events, tied back to the visit that brought the customer.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Revnu Webhooks](https://apis.io/asyncapis/revnu/revnu-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [revnu](https://apis.io/servers/revnu/revnu/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Revnu Agentic Access](https://apis.io/agentic-access/revnu/revnu-agentic-access/)
+
+#### JSON Schema (6)
+
+The data models the API reads and writes.
+
+- [BackgroundTask](https://apis.io/schemas/revnu/revnu-background-task/)
+- [LinkedinPersonAccount](https://apis.io/schemas/revnu/revnu-linkedin-person-account/)
+- [NavItem](https://apis.io/schemas/revnu/revnu-nav-item/)
+- [ProviderUsage](https://apis.io/schemas/revnu/revnu-provider-usage/)
+- [ResultsWindowResult](https://apis.io/schemas/revnu/revnu-results-window-result/)
+- [ReviewCardWire](https://apis.io/schemas/revnu/revnu-review-card-wire/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Revnu Context](https://apis.io/jsonld/revnu/revnu-context/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Revnu Openapi Overlay](https://apis.io/overlays/revnu/revnu-openapi-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Revnu API Rules](https://apis.io/rules/revnu/revnu-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Revnu Authentication](https://apis.io/security/revnu/revnu-authentication/)
+- [Revnu Domain Security](https://apis.io/security/revnu/revnu-domain-security/)
+- [Revnu Trust Center](https://apis.io/security/revnu/revnu-trust-center/)
+- [Revnu Vulnerability Disclosure](https://apis.io/security/revnu/revnu-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Revnu Plans Pricing](https://apis.io/plans/revnu/revnu-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Revnu Rate Limits](https://apis.io/rate-limits/revnu/revnu-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://revnu.com)
+- [Documentation](https://auth.revnu.app/docs)
+- [Getting started](https://auth.revnu.app/docs/getting-started)
+- [API reference](https://auth.revnu.app/docs/mcp)
+- [Pricing](https://revnu.com/pricing)
+- [Sign up](https://revnu.com/book)
+- [Support](https://revnu.com/faq)
+- [Changelog](https://auth.revnu.app/changelog)
+- [Blog](https://revnu.com/blog)
+- [Terms of service](https://revnu.com/terms)
+- [Privacy policy](https://revnu.com/privacy)
+- [GitHub](https://github.com/revnu-app)
+
+## API Evangelist rating
+
+**Kin Score 48.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 39.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 65.8 |
+
+**Agent readiness 37.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/revnu/](https://apis.io/providers/revnu/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Revnu: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/revnu/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
